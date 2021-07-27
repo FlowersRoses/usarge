@@ -270,7 +270,7 @@ async def uninvitedPmHandler(message: Message):
     if message.from_user.is_verified:
         return
     if message.from_user.id in pmCounter:
-        if pmCounter[message.from_user.id] > 3:
+        if pmCounter[message.from_user.id] > 1:
             del pmCounter[message.from_user.id]
             await message.reply(
                 blocked_message.format_map(SafeDict(**user_dict))
@@ -296,10 +296,10 @@ async def uninvitedPmHandler(message: Message):
                 )
             except (IndexError, BotInlineDisabled):
                 await message.reply(
-                    noPmMessage.format_map(SafeDict(**user_dict)) + '\n`- Protected by userge`')
+                    noPmMessage.format_map(SafeDict(**user_dict)) + '\n`- Protected by Flower`')
         else:
             await message.reply(
-                noPmMessage.format_map(SafeDict(**user_dict)) + '\n`- Protected by userge`')
+                noPmMessage.format_map(SafeDict(**user_dict)) + '\n`- Protected by Flower`')
         await asyncio.sleep(1)
         await CHANNEL.log(f"#NEW_MESSAGE\n{user_dict['mention']} has messaged you")
 
@@ -388,7 +388,7 @@ if userge.has_bot:
         else:
             user_dict = await userge.get_user_dict(c_q.from_user.id)
             await c_q.edit_message_text(
-                noPmMessage.format_map(SafeDict(**user_dict)) + '\n`- Protected by userge`')
+                noPmMessage.format_map(SafeDict(**user_dict)) + '\n`- Flower`')
             buttons = InlineKeyboardMarkup(
                 [
                     [
